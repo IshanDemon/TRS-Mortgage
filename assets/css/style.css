@@ -1,0 +1,19 @@
+.nopadding{
+    padding : 0;
+}
+.result-div{
+    padding:20px 0 0 0;
+    font-weight: bold;
+}
+.form-div, .result-div{
+    border: 2px slategrey solid;
+    padding: 5px;
+}
+.monthlyPayment, .biWeeklyPayment, .setPaymentPerYear{
+    cursor: pointer;
+    color: blue;
+}
+.calculate-div{
+    text-align: center;
+    padding: 10px 0 0 0;
+}

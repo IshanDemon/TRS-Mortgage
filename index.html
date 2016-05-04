@@ -1,6 +1,9 @@
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/dataTables.min.js"></script>
 <script type="text/javascript" src="assets/js/trs_amortize.js"></script>
@@ -8,45 +11,54 @@
 <div class="container"> 
     <div class="row"> 
         <div class="col-sm-12 col-lg-12 col-xl-12">
-            <h1 class="text-center"> Calculate Mortgage </h1>
+            <h1 class="text-center"> TRS Mortgage Calculator</h1>
         </div>
         <div id="text-2" class="outline-text-2">
             <div class="row" id="user-input">
-                <div class="col-sm-6 ">
-                    Loan Amount
+                <div class="col-sm-12 form-div">
+                    <div class="col-sm-6 nopadding">
+                        Loan Amount:
+                        <div class="col-sm-6 nopadding pull-right">
+                            <input type="text" value="308000" class="user-input" id="loanAmount">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 nopadding">
+                        Interest Rate:
+                        <div class="col-sm-6 nopadding pull-right">
+                            <input type="text" value="5" class="user-input" id="interestRate">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 nopadding">
+                        Years:
+                        <div class="col-sm-6 nopadding pull-right">
+                            <input type="text" value="30" class="user-input" id="years">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 nopadding">
+                        Payments per year (<span class='monthlyPayment setPaymentPerYear' data-value='12'>Monthly</span> / <span class='biWeeklyPayment setPaymentPerYear' data-value='26'>Bi-weekly</span>):
+                        <div class="col-sm-6 nopadding pull-right">
+                            <input type="text" value="12" class="user-input" id="paymentsPerYear">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 nopadding">
+                        <div class="col-sm-3 nopadding">
+                            Start Date:
+                        </div>
+                        <div class="col-sm-6 nopadding pull-right">
+                            <input type="text" class="user-input" id="startDate">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 nopadding calculate-div">
+                        <a class="btn btn-success" id="calculate_mortgage"> Calculate Mortgage </a>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <input type="text" value="308000" class="user-input" id="loanAmount">
-                </div>
-                <div class="col-sm-6">
-                    Interest Rate
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" value="5" class="user-input" id="interestRate">
-                </div>
-                <div class="col-sm-6">
-                    Years
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" value="30" class="user-input" id="years">
-                </div> 
-                <div class="col-sm-6">
-                    Payments per year
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" value="12" class="user-input" id="paymentsPerYear">
-                </div>
-                <div class="col-sm-6">
-                    Start Date
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" value="12" class="user-input" id="startDate">
-                </div>
-                <div class="col-sm-6">
-                    Payment Amount (Monthly Principal & Interest)
-                </div>
-                <div class="col-sm-6">
-                    <div id="paymentAmount">$0</div>
+                <div class="col-sm-12 result-div">
+                    <div class="col-sm-6 nopadding">
+                        Payment Amount (Monthly Principal & Interest)
+                    </div>
+                    <div class="col-sm-6 nopadding">
+                        <div id="paymentAmount">$0</div>
+                    </div>
                 </div>
             </div>
             <br>
@@ -59,3 +71,19 @@
         <div class="col-sm-12 col-lg-12" id="graph"></div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        $("#startDate").datepicker({
+            showAnim: 'drop', //drop,clip,fold,slide,bounce,blind,fadeIn,slideDown,show
+            setDate: new Date()
+        });
+        var currentDate = new Date();
+//        currentDate = (currentDate.getDate() > 9) ? currentDate.getDate() : '0'+currentDate.getDate() + "/" + (currentDate.getMonth() > 9) ? currentDate.getMonth() : '0'+currentDate.getMonth() + "/" + currentDate.getFullYear();
+        currentDate = currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear();
+        $("#startDate").val(currentDate);
+        $(".setPaymentPerYear").click(function () {
+            $("#paymentsPerYear").val($(this).data('value'));
+        });
+    });
+</script>

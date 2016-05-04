@@ -10,16 +10,16 @@
         var paymentsPerYear = output.paymentsPerYear = parseInt($('#paymentsPerYear').val());
         var years = output.years = parseInt($('#years').val());
         var numberOfPayments = output.numberOfPayments = paymentsPerYear * years;
-console.log("interestRate / 100 / paymentsPerYear");
-console.log(interestRate / 100 / paymentsPerYear);
         var payment = output.payment = pmt(interestRate / 100 / paymentsPerYear, numberOfPayments, -loanAmount);
+        var mainStartDate = $("#startDate").val();
 //        var payment = output.payment = pmt(interestRate, numberOfPayments, loanAmount);
 
         output.schedule = computeSchedule(loanAmount,
                 interestRate,
                 paymentsPerYear,
                 years,
-                payment);
+                payment,
+                mainStartDate);
         return output;
     }
 
@@ -70,7 +70,7 @@ console.log(interestRate / 100 / paymentsPerYear);
         }
     }
 
-    function reload() {
+    function calculateMortgage() {
         var ds = getDataSet();
         $('#paymentAmount').text('$' + ds.payment.toFixed(2));
         reloadTable(ds);
@@ -78,10 +78,11 @@ console.log(interestRate / 100 / paymentsPerYear);
     }
 
 
-    $(document).on('keyup', '.user-input', reload);
+//    $(document).on('keyup', '.user-input', calculateMortgage);
 
     $(document).ready(function () {
-        reload();
+        calculateMortgage();
+        $("#calculate_mortgage").click(calculateMortgage);
     });
 
 })();

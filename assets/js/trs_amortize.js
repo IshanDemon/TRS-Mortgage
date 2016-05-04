@@ -15,16 +15,17 @@ function pmt(rate, nper, pv) {
 ;
 
 // for bi-weekly payments_per_year = 26
-function computeSchedule(loan_amount, interest_rate, payments_per_year, years, payment) {
+function computeSchedule(loan_amount, interest_rate, payments_per_year, years, payment, mainStartDate) {
 //    var schedule = {};
     var schedule = [];
     var remaining = loan_amount;
     var number_of_payments = payments_per_year * years;
-    var mainDate = new Date();
+    // create a start date object
+    mainStartDate = mainStartDate ? new Date(mainStartDate) : new Date();
     for (var i = 0; i < number_of_payments; i++) {
         var interest = remaining * (interest_rate / 100 / payments_per_year);
         var principle = (payment - interest);
-        var paymentDate = (i === 0) ? new Date(mainDate) : new Date(addDaysInDate(mainDate, payments_per_year));
+        var paymentDate = (i === 0) ? new Date(mainStartDate) : new Date(addDaysInDate(mainStartDate, payments_per_year));
         principle = principle > 0 ? (principle < payment ? principle : payment) : 0;
         interest = interest > 0 ? interest : 0;
         var newRemainingAmount = remaining > 0 ? remaining - principle : 0;
@@ -51,7 +52,7 @@ function computeSchedule(loan_amount, interest_rate, payments_per_year, years, p
         schedule.push(row);
         remaining -= principle;
     }
-    console.log(schedule);
+//    console.log(schedule);
     return schedule;
 }
 
