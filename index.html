@@ -1,0 +1,61 @@
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css"/>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/dataTables.min.js"></script>
+<script type="text/javascript" src="assets/js/trs_amortize.js"></script>
+<script type="text/javascript" src="assets/js/trs_calculator.js"></script>
+<div class="container"> 
+    <div class="row"> 
+        <div class="col-sm-12 col-lg-12 col-xl-12">
+            <h1 class="text-center"> Calculate Mortgage </h1>
+        </div>
+        <div id="text-2" class="outline-text-2">
+            <div class="row" id="user-input">
+                <div class="col-sm-6 ">
+                    Loan Amount
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" value="308000" class="user-input" id="loanAmount">
+                </div>
+                <div class="col-sm-6">
+                    Interest Rate
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" value="5" class="user-input" id="interestRate">
+                </div>
+                <div class="col-sm-6">
+                    Years
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" value="30" class="user-input" id="years">
+                </div> 
+                <div class="col-sm-6">
+                    Payments per year
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" value="12" class="user-input" id="paymentsPerYear">
+                </div>
+                <div class="col-sm-6">
+                    Start Date
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" value="12" class="user-input" id="startDate">
+                </div>
+                <div class="col-sm-6">
+                    Payment Amount (Monthly Principal & Interest)
+                </div>
+                <div class="col-sm-6">
+                    <div id="paymentAmount">$0</div>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <div class="col-sm-12 col-lg-12">
+            <h1 class="text-center"> Amortization Data </h1>
+        </div>
+        <div class="col-sm-12 col-lg-12" id="schedule"></div>
+        <div class="col-sm-12 col-lg-12" id="graph"></div>
+    </div>
+</div>
